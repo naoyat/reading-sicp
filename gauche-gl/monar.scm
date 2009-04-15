@@ -1,0 +1,15 @@
+(define monar-segments (list
+                  (make-segment (make-point 0.2 0.7) (make-point 0.3 0.9))
+                  (make-segment (make-point 0.4 0.7) (make-point 0.3 0.9))
+                  (make-segment (make-point 0.6 0.7) (make-point 0.7 0.9))
+                  (make-segment (make-point 0.8 0.7) (make-point 0.7 0.9))
+                  (make-segment (make-point 0.3 0.5) (make-point 0.4 0.6))
+                  (make-segment (make-point 0.6 0.6) (make-point 0.7 0.5))
+                  (make-segment (make-point 0.5 0.2) (make-point 0.6 0.4))
+                  (make-segment (make-point 0.5 0.2) (make-point 0.4 0.4))
+                  (make-segment (make-point 0.45 0.3) (make-point 0.55 0.3))
+                  (make-segment (make-point 0.85 0.6) (make-point 0.9 0.4))
+                  (make-segment (make-point 0.85 0.2) (make-point 0.9 0.4))
+                  ))
+
+(define monar (segments->painter monar-segments))

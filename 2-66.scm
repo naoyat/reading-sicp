@@ -1,0 +1,50 @@
+(define (make-record key data) (list 'record key data))
+
+(define (record? rec)
+  (and (pair? rec)
+       (eq? (car rec) 'record)))
+(define (key rec)
+  (if (record? rec)
+      (cadr rec)
+      #f))
+(define (data rec)
+  (if (record? rec)
+      (caddr rec)
+      #f))
+
+;(define (lookup given-key set-of-records)
+;  (cond ((
+(define (lookup given-key set-of-records)
+  (cond ((null? set-of-records) #f)
+        ((equal? given-key (key (car set-of-records)))
+         (car set-of-records))
+        (else (lookup given-key (cdr set-of-records)))))
+
+(define set-of-records
+  (list (make-record 1 'aramaki)
+        (make-record 2 'kusanagi)
+        (make-record 3 'batou)
+        (make-record 4 'togusa)
+        (make-record 5 'ishikawa)
+        (make-record 6 'saito)
+        (make-record 7 'paz)
+        (make-record 8 'borma)
+        (make-record 9 'tachikoma)))
+
+(require "./2-64")
+(define tree-of-records (list->tree set-of-records))
+
+;;;
+(require "./binary-tree")
+
+(define (lookup-tree given-key tree-of-records)
+  (if (null? tree-of-records)
+      (error "unknown key -- LOOKUP-TREE" given-key)
+      (let ((entry-rec (entry tree-of-records)))
+        (let ((entry-key (key entry-rec)))
+          (cond ((= given-key entry-key) entry-rec)
+                ((< given-key entry-key)
+                 (lookup-tree given-key (left-branch tree-of-records)))
+                ((> given-key entry-key)
+                 (lookup-tree given-key (right-branch tree-of-records))))
+          ))))

@@ -1,0 +1,15 @@
+(require "./232deriv")
+
+;(define (augend s) (caddr s))
+(define (augend s)
+  (let ((rest (cddr s)))
+    (if (null? (cdr rest))
+        (car rest)
+        (cons '+ rest))))
+
+;(define (multiplicand p) (caddr p))
+(define (multiplicand p)
+  (let ((rest (cddr p)))
+    (if (null? (cdr rest))
+        (car rest)
+        (cons '* rest))))

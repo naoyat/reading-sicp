@@ -1,0 +1,8 @@
+(define (fast-expr b n)
+  (define (even? n) (= (remainder n 2) 0))
+  (define (square n) (* n n))
+  (define (iter b n product)
+    (cond ((= n 0) product)
+          ((even? n) (iter (square b) (/ n 2) product))
+          (else (iter b (- n 1) (* b product)))))
+  (iter b n 1))
